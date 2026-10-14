@@ -51,7 +51,7 @@ flowchart LR
 
 > **Status: early (v0.x).** It works and we use it, but expect rough edges. Installation is from source for now; a one-line `npx` install is on the [roadmap](#-roadmap).
 
-**You need:** Node.js 22 LTS, Git, and pnpm (`corepack enable`, or `npm i -g pnpm@10`).
+**You need:** Node.js 24 LTS, Git, and pnpm (`corepack enable`, or `npm i -g pnpm@10`).
 
 ```bash
 git clone https://github.com/etosin/arc-draw.git

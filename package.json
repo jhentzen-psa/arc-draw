@@ -4,6 +4,9 @@
   "description": "ARC-DRAW: open-source MCP server that lets AI agents draw SAP BTP solution diagrams on a live draw.io canvas, with the official SAP icons and diagram rules. Fork of drawio-mcp-server.",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "packageManager": "pnpm@10.8.1",
   "scripts": {
     "build": "pnpm -r build",

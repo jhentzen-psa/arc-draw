@@ -6,13 +6,13 @@
 
 **Architecture:** Marketplace manifest at `.claude-plugin/marketplace.json` (top of repo). Plugin package at `packages/drawio-mcp-claude-plugin/` shipping `plugin.json` + two slash commands. Install subcommand as `install/` module inside `packages/drawio-mcp-server/`, dispatched from `src/index.ts` before any transport boot, per-host adapters behind a common interface, all writes atomic and format-preserving.
 
-**Tech Stack:** TypeScript strict, Node.js 22/24, pnpm workspaces, Jest 30 (with `--experimental-vm-modules`), Biome for lint, `jsonc-parser` for JSON with comments, `smol-toml` for TOML round-trip, GitHub Actions.
+**Tech Stack:** TypeScript strict, Node.js 24, pnpm workspaces, Jest 30 (with `--experimental-vm-modules`), Biome for lint, `jsonc-parser` for JSON with comments, `smol-toml` for TOML round-trip, GitHub Actions.
 
 ## Global Constraints
 
 - **Stdout discipline** — install subcommand only writes to stdout when `--print` is passed. `console.*` outside `src/index.ts`, `src/install/index.ts`, and test files is forbidden. Add `src/install/**` to Biome overrides for `noConsole` matching the pattern in the existing allowlist (or route diagnostics through a passed-in logger).
 - **Test convention** — all new `*.test.ts` files start with `import { describe, it, expect, beforeEach, afterEach, jest } from "@jest/globals";` and colocate next to the source file.
-- **Node version** — `>=22`. Existing `engines.node: ">=20.0.0"` in `package.json` stays.
+- **Node version** — `>=24`. Project packages require Node.js 24.
 - **Package manager** — `pnpm@10.8.1`. All new devDeps go through the pnpm workspace catalog if shared across packages; otherwise pin at the package level.
 - **Server package name** — `drawio-mcp-server` (unchanged). New plugin package name — `drawio-mcp-claude-plugin` (`private: true`, not published to npm).
 - **Marketplace slug** — `drawio-mcp-server` (matches repo). Plugin slug — `drawio`.
